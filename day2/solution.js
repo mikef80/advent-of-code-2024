@@ -49,14 +49,54 @@ console.log(safetyArray.length); */
 // PART 2
 
 const allIncreasing = (array) => {
+  // check for no input
   if (!array) return null;
+
+  // check if not type of Array
   if (Array.isArray(array) === false) return false;
-  
+
+  // check all numbers are unique
+  const uniqueValues = [...new Set(array)];
+  const arrayMatch = array.every((value, index) => value === uniqueValues[index]);
+  if (!arrayMatch) return false;
+
+  // check if not all increasing
+  const increasingNumbers = (testArray) => {
+    for (let i = 0; i < testArray.length - 1; i++) {
+      if (testArray[i] >= testArray[i + 1]) {
+        return false;
+      }
+    }
+    return true;
+  };
+  return increasingNumbers(array);
 };
 
+const allDecreasing = (array) => {
+  // check for no input
+  if (!array) return null;
 
-const allDecreasing = () => {};
+  // check if not type of Array
+  if (Array.isArray(array) === false) return false;
+
+  // check all numbers are unique
+  const uniqueValues = [...new Set(array)];
+  const arrayMatch = array.every((value, index) => value === uniqueValues[index]);
+  if (!arrayMatch) return false;
+
+  // check if not all decreasing
+  const decreasingNumbers = (testArray) => {
+    for (let i = 0; i < testArray.length - 1; i++) {
+      if (testArray[i] <= testArray[i + 1]) {
+        return false;
+      }
+    }
+    return true;
+  };
+  return decreasingNumbers(array);
+};
+
 const gapLessThanThree = () => {};
 const removeNumber = () => {};
 
-module.exports = { allIncreasing };
+module.exports = { allIncreasing, allDecreasing };
